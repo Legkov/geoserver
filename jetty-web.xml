@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_9_4.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+  
+  <!-- JAAS Login Service для SPNEGO -->
+  <Get name="securityHandler">
+    <Set name="loginService">
+	  <New class="org.eclipse.jetty.security.SpnegoLoginService">
+            <Set name="name">SPNEGO</Set>
+            <Set name="config">C:/Program Files/GeoServer/etc/negotiate/krb5.conf</Set>
+      </New>	
+    </Set>
+    
+	<!-- Authenticator -->
+    <Set name="authenticator">
+      <New class="org.eclipse.jetty.security.authentication.SpnegoAuthenticator">       
+      </New>
+    </Set>	  
+    
+  </Get>
+
+</Configure>
